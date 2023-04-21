@@ -1,0 +1,12 @@
+{{ define "main" }}
+<header>
+    <h1>404 - 页面没找到</h1>
+</header>
+<article>
+    <p>你想查看的页面已被转移或删除了, 要不要搜索看看: </p>
+    <form method="post" onsubmit="return false">
+        <p><input type="text" name="s" class="text" /></p>
+        <p><button type="submit" class="submit">搜索</button></p>
+    </form>
+</article>
+{{ end }}

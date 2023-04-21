@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div id="archives">
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ if .Site.Params.ShowAllPagesInArchive }}
+        {{ $pages = .Site.RegularPages }}
+    {{ end }}
+    {{ range $pages.GroupByDate "2006" }}
+    {{ if ne .Key "0001" }}
+        <h3 class="al_year">{{ replace .Key "0001" "" }} 年</h3>
+        <ul class="al_mon_list">
+            {{ range .Pages.GroupByDate "01" }}
+            <li>
+                <span class="al_mon">{{ .Key }} 月</span>
+                <ul class="al_post_list">
+                    {{ range .Pages.ByDate }}
+                    {{ if eq .Kind "page" }}
+                        <li>{{ .Date.Format "02"}}日: <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                    {{ end }}
+                </ul>
+            </li>
+            {{ end }}
+        </ul>
+    {{ end }}
+    {{ end }}
+</div>
+{{ end }}

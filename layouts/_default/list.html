@@ -1,0 +1,16 @@
+{{ define "main" }}
+<header>
+    <h1>{{ .Title }}</h1>
+</header>
+<article>
+    <ul>
+        {{ range where .Paginator.Pages.ByDate.Reverse "Type" "in" .Site.Params.mainSections }}
+        <li>
+            <span>{{ .Date.Format "2006/01/02" }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+    </ul>
+    {{ partial "partials/pagination.html" . }}
+</article>
+{{ end }}

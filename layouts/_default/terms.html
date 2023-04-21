@@ -1,0 +1,16 @@
+{{ define "main" }}
+<header>
+    <h1>{{ .Title }}</h1>
+</header>
+<article>
+    <ul>
+        {{ range .Data.Terms.Alphabetical }}
+        {{ with $.Site.GetPage (printf "/%s/%s" $.Type .Name) }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+    </ul>
+</article>
+{{ end }}

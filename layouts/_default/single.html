@@ -1,0 +1,14 @@
+{{ define "main" }}
+<header>
+    <h1>{{ .Title }}</h1>
+</header>
+<article>
+    {{ .Content }}
+    {{ if in .Site.Params.mainsections .Type }}
+    <ul class="page-navigator">
+        <li>Prev: {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}nil{{ end }}</li>
+        <li>Next: {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}nil{{ end }}</li>
+    </ul>
+    {{ end }}
+</article>
+{{ end }}
